@@ -1,0 +1,6 @@
+{
+  "name": "Vision Chat",
+  "description": "An accessible AI assistant for blind and visually impaired users, providing real-time image analysis, text recognition, and voice-guided navigation assistance.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["image_analysis", "voice_chat", "text_to_speech"]
+}

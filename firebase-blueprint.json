@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "Chat": {
+      "title": "Chat Session",
+      "description": "A conversation session for Vision Chat",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who owns this chat" },
+        "title": { "type": "string", "description": "A summary or title of the conversation" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastMessageAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "createdAt", "lastMessageAt"]
+    },
+    "Message": {
+      "title": "ChatMessage",
+      "description": "An individual message within a chat session",
+      "type": "object",
+      "properties": {
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string", "description": "The text content of the message" },
+        "type": { "type": "string", "enum": ["text", "image", "voice"] },
+        "imageUrl": { "type": "string", "description": "Optional base64 or URL of the analyzed image" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["role", "content", "type", "createdAt"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Public and private user information",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Collection of all chat sessions"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a specific chat session"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    }
+  }
+}
